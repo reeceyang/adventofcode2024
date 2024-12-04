@@ -1,24 +1,24 @@
 module Main where
 
-import Data.List.Split
 import Data.List (sort)
+import Data.List.Split
 
 main :: IO ()
 main = part2
 
 part1 :: IO ()
 part1 = do
-    fileContent <- readFile "inputs/1.txt"
-    let listA = sort $ map firstNum $ lines fileContent
-    let listB = sort $ map secondNum $ lines fileContent
-    print $ sum $ zipWith dist listA listB
+  fileContent <- readFile "inputs/1.txt"
+  let listA = sort $ map firstNum $ lines fileContent
+  let listB = sort $ map secondNum $ lines fileContent
+  print $ sum $ zipWith dist listA listB
 
 part2 :: IO ()
 part2 = do
-    fileContent <- readFile "inputs/1.txt"
-    let listA = map firstNum $ lines fileContent
-    let listB = map secondNum $ lines fileContent
-    print $ sum $ zipWith similarityScore listA $ map (countFrequency listB) listA
+  fileContent <- readFile "inputs/1.txt"
+  let listA = map firstNum $ lines fileContent
+  let listB = map secondNum $ lines fileContent
+  print $ sum $ zipWith similarityScore listA $ map (countFrequency listB) listA
 
 firstNum :: [Char] -> Int
 firstNum line = read (head (splitOn "   " line)) :: Int
